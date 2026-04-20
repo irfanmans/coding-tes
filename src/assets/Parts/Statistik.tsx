@@ -32,11 +32,7 @@ export default function Statistik({ data }: StatistikProps) {
         value={stats.approved}
       />
       <StatistikCard label="rejected" title="Ditolak" value={stats.rejected} />
-      <StatistikCard
-        label="result"
-        title="Total"
-        value={stats.totalNominal} // 🔥 tetap number
-      />
+      <StatistikCard label="result" title="Total" value={stats.totalNominal} />
     </div>
   );
 }

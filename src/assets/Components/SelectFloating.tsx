@@ -32,7 +32,6 @@ export default function SelectFloating({
         ))}
       </select>
 
-      {/* ICON */}
       {value ? (
         <IoIosClose
           size={20}
