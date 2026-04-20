@@ -58,11 +58,6 @@ function App() {
     setShowRejectedDialog(true);
   }
 
-  // function handleDelete(index: number) {
-  //   const filtered = data.filter((_, i) => i !== index);
-  //   setData(filtered);
-  // }
-
   function handleClickDelete(index: number) {
     setDeleteIndex(index);
     setShowDeleteDialog(true);
@@ -111,6 +106,7 @@ function App() {
         <DialogFormAdd
           onClose={() => setShowForm(false)}
           onAddNasabah={handleAdd}
+          data={data}
         />
       )}
 

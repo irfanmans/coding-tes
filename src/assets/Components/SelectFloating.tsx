@@ -21,10 +21,7 @@ export default function SelectFloating({
         id={id}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="
-          peer w-full appearance-none border border-gray-300 rounded-xl px-4 pt-5 pb-2 text-sm bg-white
-          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-        "
+        className="peer w-full appearance-none border bg-white border-gray-300 rounded-xl px-4 pt-5.5 pb-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
       >
         <option value="" disabled hidden></option>
 

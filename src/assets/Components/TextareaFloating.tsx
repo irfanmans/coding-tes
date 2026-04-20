@@ -22,8 +22,7 @@ export default function TextareaFloating({
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         rows={4}
-        className="peer w-full resize-none border border-gray-300 rounded-xl px-4 pt-6 pb-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all
-        "
+        className="peer w-full resize-none bg-white border border-gray-300 rounded-xl px-4 pt-5.5 pb-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
       />
 
       <label

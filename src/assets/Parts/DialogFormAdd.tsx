@@ -11,6 +11,7 @@ import { useState } from "react";
 export default function DialogFormAdd({
   onClose,
   onAddNasabah,
+  data,
 }: DialogFormAddProps) {
   const [form, setForm] = useState<Pengajuan>({
     fullName: "",
@@ -25,6 +26,26 @@ export default function DialogFormAdd({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (form.income < 1_000_000) {
+      alert("Nasabah belum dapat mengajukan pinjaman");
+      return;
+    }
+
+    if (form.nominal > 200_000_000) {
+      alert("Nominal maksimal pinjaman adalah 200 juta");
+      return;
+    }
+
+    const totalPengajuan = data.filter(
+      (item) => item.fullName === form.fullName,
+    ).length;
+
+    if (totalPengajuan >= 3) {
+      alert("Nasabah sudah mencapai batas maksimal 3 pengajuan");
+      return;
+    }
+
     onAddNasabah(form);
     onClose();
   };
@@ -49,7 +70,7 @@ export default function DialogFormAdd({
         onClick={onClose}
       />
 
-      <div className="relative bg-white max-w-3xl w-full rounded-2xl h-fit shadow-xl py-3 px-5 mx-5 animate-scaleIn">
+      <div className="relative bg-white max-w-3xl w-full rounded-2xl h-fit shadow-xl py-5 px-5 mx-5 animate-scaleIn">
         <div className="flex justify-between items-start">
           <div>
             <h1 className="text-lg font-semibold">Formulir Pengajuan Kredit</h1>

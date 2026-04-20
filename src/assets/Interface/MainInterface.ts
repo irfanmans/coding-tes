@@ -86,6 +86,7 @@ export interface TextareaFloatingProps {
 export interface DialogFormAddProps {
   onClose: () => void;
   onAddNasabah: (data: Pengajuan) => void;
+  data: Pengajuan[];
 }
 
 export interface DialogDetailProps {
