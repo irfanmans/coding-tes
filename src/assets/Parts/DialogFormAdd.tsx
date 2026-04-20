@@ -7,6 +7,7 @@ import SelectFloating from "../Components/SelectFloating";
 import TextareaFloating from "../Components/TextareaFloating";
 import type { DialogFormAddProps, Pengajuan } from "../Interface/MainInterface";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function DialogFormAdd({
   onClose,
@@ -28,23 +29,25 @@ export default function DialogFormAdd({
     e.preventDefault();
 
     if (form.income < 1_000_000) {
-      alert("Nasabah belum dapat mengajukan pinjaman");
+      toast.error("Nasabah belum dapat mengajukan pinjaman");
       return;
     }
 
     if (form.nominal > 200_000_000) {
-      alert("Nominal maksimal pinjaman adalah 200 juta");
+      toast.error("Nominal maksimal pinjaman adalah 200 juta");
       return;
     }
 
     const totalPengajuan = data.filter(
-      (item) => item.fullName === form.fullName,
+      (item) => item.fullName.toLowerCase() === form.fullName.toLowerCase(),
     ).length;
 
     if (totalPengajuan >= 3) {
-      alert("Nasabah sudah mencapai batas maksimal 3 pengajuan");
+      toast.error("Nasabah sudah mencapai batas maksimal 3 pengajuan");
       return;
     }
+
+    toast.success("Pengajuan berhasil ditambahkan ✅");
 
     onAddNasabah(form);
     onClose();

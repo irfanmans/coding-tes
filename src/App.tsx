@@ -7,6 +7,7 @@ import DisplayTable from "./assets/Parts/DisplayTable";
 import DialogFormAdd from "./assets/Parts/DialogFormAdd";
 import DialogDetail from "./assets/Parts/DialogDetail";
 import DialogAlertNotification from "./assets/Components/DialogAlertNotification";
+import { Toaster } from "sonner";
 
 function App() {
   const [data, setData] = useState<Pengajuan[]>(() => {
@@ -87,82 +88,86 @@ function App() {
   }
 
   return (
-    <LayoutApp>
-      <Navbar onShowDialogForm={() => setShowForm(true)} />
+    <>
+      <LayoutApp>
+        <Navbar onShowDialogForm={() => setShowForm(true)} />
 
-      <main className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-        <Statistik data={data} />
+        <main className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+          <Statistik data={data} />
 
-        <DisplayTable
-          data={data}
-          onDetail={(item) => setSelectedDetail(item)}
-          onRejected={handleRejected}
-          onApprove={handleApprove}
-          onDelete={handleClickDelete}
-        />
-      </main>
+          <DisplayTable
+            data={data}
+            onDetail={(item) => setSelectedDetail(item)}
+            onRejected={handleRejected}
+            onApprove={handleApprove}
+            onDelete={handleClickDelete}
+          />
+        </main>
 
-      {showForm && (
-        <DialogFormAdd
-          onClose={() => setShowForm(false)}
-          onAddNasabah={handleAdd}
-          data={data}
-        />
-      )}
+        {showForm && (
+          <DialogFormAdd
+            onClose={() => setShowForm(false)}
+            onAddNasabah={handleAdd}
+            data={data}
+          />
+        )}
 
-      {selectedDetail && (
-        <DialogDetail
-          data={selectedDetail}
-          onClose={() => setSelectedDetail(null)}
-        />
-      )}
+        {selectedDetail && (
+          <DialogDetail
+            data={selectedDetail}
+            onClose={() => setSelectedDetail(null)}
+          />
+        )}
 
-      {showRejectedDialog && (
-        <DialogAlertNotification
-          title="Tolak Pengajuan?"
-          label="menolak"
-          status="ditolak"
-          onConfirm={confirmRejected}
-          onCancel={() => {
-            setShowRejectedDialog(false);
-            setRejectedIndex(null);
-          }}
-          titleBtnApprove="Ya, Tolak"
-          titleBtnCancel="Batal"
-        />
-      )}
+        {showRejectedDialog && (
+          <DialogAlertNotification
+            title="Tolak Pengajuan?"
+            label="menolak"
+            status="ditolak"
+            onConfirm={confirmRejected}
+            onCancel={() => {
+              setShowRejectedDialog(false);
+              setRejectedIndex(null);
+            }}
+            titleBtnApprove="Ya, Tolak"
+            titleBtnCancel="Batal"
+          />
+        )}
 
-      {/* ✅ SETUJU */}
-      {showApproveDialog && (
-        <DialogAlertNotification
-          title="Setujui Pengajuan?"
-          label="menyetujui"
-          status="disetujui"
-          onConfirm={confirmApprove}
-          onCancel={() => {
-            setShowApproveDialog(false);
-            setApproveIndex(null);
-          }}
-          titleBtnApprove="Ya, Setujui"
-          titleBtnCancel="Batal"
-        />
-      )}
+        {/* ✅ SETUJU */}
+        {showApproveDialog && (
+          <DialogAlertNotification
+            title="Setujui Pengajuan?"
+            label="menyetujui"
+            status="disetujui"
+            onConfirm={confirmApprove}
+            onCancel={() => {
+              setShowApproveDialog(false);
+              setApproveIndex(null);
+            }}
+            titleBtnApprove="Ya, Setujui"
+            titleBtnCancel="Batal"
+          />
+        )}
 
-      {showDeleteDialog && (
-        <DialogAlertNotification
-          title="Hapus Data?"
-          label="menghapus"
-          status="dihapus"
-          onConfirm={confirmDelete}
-          onCancel={() => {
-            setShowDeleteDialog(false);
-            setDeleteIndex(null);
-          }}
-          titleBtnApprove="Ya, Hapus"
-          titleBtnCancel="Batal"
-        />
-      )}
-    </LayoutApp>
+        {showDeleteDialog && (
+          <DialogAlertNotification
+            title="Hapus Data?"
+            label="menghapus"
+            status="dihapus"
+            onConfirm={confirmDelete}
+            onCancel={() => {
+              setShowDeleteDialog(false);
+              setDeleteIndex(null);
+            }}
+            titleBtnApprove="Ya, Hapus"
+            titleBtnCancel="Batal"
+          />
+        )}
+      </LayoutApp>
+
+      <Toaster position="top-right" richColors />
+    </>
   );
 }
 
